@@ -1,0 +1,9 @@
+= csoftz-gap-java-test README
+
+V1.0.0-May.19/2018
+
+Contains the files that support the Technical Test for GAP (Global Acceleration Partners).
+
+Here we find some folders.
+The main folder is named 'app-code' which contains all the source code for the solution.
+
