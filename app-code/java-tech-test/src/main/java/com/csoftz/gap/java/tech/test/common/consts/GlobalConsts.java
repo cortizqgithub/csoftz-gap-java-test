@@ -1,6 +1,6 @@
 /*----------------------------------------------------------------------------*/
-/* Source File:   JAVATECHTESTAPPLICATIONTESTS.JAVA                           */
-/* Description:   Main application tests                                      */
+/* Source File:   GLOBALCONSTANTS.JAVA                                        */
+/* Description:   General constant definitions.                               */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
 /* Date:          May.19/2018                                                 */
 /* Last Modified: May.19/2018                                                 */
@@ -11,29 +11,19 @@
  History
  May.19/2018  COQ  File created.
  -----------------------------------------------------------------------------*/
-package com.csoftz.gap.java.tech.test;
-
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+package com.csoftz.gap.java.tech.test.common.consts;
 
 /**
- * Main application tests
+ * General constant definitions.
  *
  * @author Carlos Adolfo Ortiz Quirós (COQ)
  * @version 1.1, May.19/2018
  * @since 1.8 (JDK), May.19/2018
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class JavaTechTestApplicationTests {
-
-    /**
-     * Loads Spring Boot context to validate its configuration is well defined.
+public class GlobalConsts {
+    /*
+     * General
      */
-    @Test
-    public void contextLoads() {
-    }
-
+    public static final String APP_NAME = "Java Tech Test for GAP.";
+    public static final String APP_VERSION = "1.0.0-RELEASE. May.19/2018.";
 }
