@@ -29,7 +29,6 @@ import static com.csoftz.gap.java.tech.test.common.consts.GlobalConsts.APP_VERSI
  * @version 1.1, May.19/2018
  * @since 1.8 (JDK), May.19/2018
  */
-
 @SpringBootApplication
 public class JavaTechTestApplication implements CommandLineRunner {
     private static final Logger log = LoggerFactory.getLogger(JavaTechTestApplication.class);
