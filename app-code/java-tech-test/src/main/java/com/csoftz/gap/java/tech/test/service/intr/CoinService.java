@@ -1,6 +1,6 @@
 /*----------------------------------------------------------------------------*/
-/* Source File:   PALINDROMESERVICEIMPL.JAVA                                  */
-/* Description:   Service implementation to handle Palindrome operations.     */
+/* Source File:   COINSERVICE.JAVA                                            */
+/* Description:   Service interface to handle Coin operations.                */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
 /* Date:          May.19/2018                                                 */
 /* Last Modified: May.19/2018                                                 */
@@ -11,20 +11,14 @@
  History
  May.19/2018  COQ  File created.
  -----------------------------------------------------------------------------*/
-package com.csoftz.gap.java.tech.test.service;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
+package com.csoftz.gap.java.tech.test.service.intr;
 
 /**
- * Service implementation to handle Palindrome operations.
+ * Service interface to handle Coin operations.
  *
  * @author Carlos Adolfo Ortiz Quirós (COQ)
  * @version 1.1, May.19/2018
  * @since 1.8 (JDK), May.19/2018
  */
-@Service
-public class PalindromeServiceImpl {
-    private static final Logger log = LoggerFactory.getLogger(PalindromeServiceImpl.class);
+public interface CoinService {
 }
