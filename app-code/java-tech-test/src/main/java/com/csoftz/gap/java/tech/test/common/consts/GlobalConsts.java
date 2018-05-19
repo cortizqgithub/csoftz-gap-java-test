@@ -26,4 +26,18 @@ public class GlobalConsts {
      */
     public static final String APP_NAME = "Java Tech Test for GAP.";
     public static final String APP_VERSION = "1.0.0-RELEASE. May.19/2018.";
+
+    /*
+     * Coins
+     */
+    public static final String COIN_VALUE_TWENTY = "20";
+    public static final String COIN_VALUE_ONE_HUNDRED = "100";
+    public static final String COIN_VALUE_TWO_HUNDRED = "200";
+    public static final String COIN_VALUE_FIVE_HUNDRED = "500";
+    public static final String COIN_VALUE_ONE_THOUSAND = "1000";
+
+    /*
+     * Piggy Bank Error Messages.
+     */
+    public static final String ERROR_MSG_COIN_INVALID_DENOMINATION = "Coin rejected. Valid coin denomination are: 50, 100, 200, 500 & 1000";
 }

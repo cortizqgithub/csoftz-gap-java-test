@@ -1,6 +1,6 @@
 /*----------------------------------------------------------------------------*/
-/* Source File:   PALINDROMESERVICEIMPL.JAVA                                  */
-/* Description:   Service implementation to handle Palindrome operations.     */
+/* Source File:   PIGGYBANKSTATUS.JAVA                                        */
+/* Description:   Defines the Piggy Bank Operation Status Object.             */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
 /* Date:          May.19/2018                                                 */
 /* Last Modified: May.19/2018                                                 */
@@ -11,17 +11,20 @@
  History
  May.19/2018  COQ  File created.
  -----------------------------------------------------------------------------*/
-package com.csoftz.gap.java.tech.test.service;
+package com.csoftz.gap.java.tech.test.domain;
 
-import org.springframework.stereotype.Service;
+import lombok.Data;
 
 /**
- * Service implementation to handle Palindrome operations.
+ * Defines the Piggy Bank Operation Status Object.
+ * It holds the information for any operation in the Piggy Bank System.
  *
  * @author Carlos Adolfo Ortiz Quirós (COQ)
  * @version 1.1, May.19/2018
  * @since 1.8 (JDK), May.19/2018
  */
-@Service
-public class PalindromeServiceImpl {
+@Data
+public class PiggyBankStatus {
+    private int error;
+    private String msg;
 }

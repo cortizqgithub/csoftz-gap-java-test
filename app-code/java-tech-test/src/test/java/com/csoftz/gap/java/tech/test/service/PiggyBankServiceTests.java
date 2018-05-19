@@ -14,12 +14,14 @@
  -----------------------------------------------------------------------------*/
 package com.csoftz.gap.java.tech.test.service;
 
+import com.csoftz.gap.java.tech.test.domain.PiggyBank;
+import com.csoftz.gap.java.tech.test.domain.PiggyBankStatus;
 import com.csoftz.gap.java.tech.test.service.intr.PiggyBankService;
-import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Test;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.reset;
+import static com.csoftz.gap.java.tech.test.common.consts.GlobalConsts.ERROR_MSG_COIN_INVALID_DENOMINATION;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Service implementation to handle Piggy Bank operations (Tests).
@@ -40,14 +42,55 @@ public class PiggyBankServiceTests {
      */
     @BeforeClass
     public static void init() {
-        piggyBankService = mock(PiggyBankService.class);
+        piggyBankService = new PiggyBankServiceImpl();
     }
 
     /**
-     * Prepare data for each test.
+     * Given a Piggy Bank it examines it is returned as not null reference.
+     *
+     * @throws Exception Throws any failure in code execution.
      */
-    @Before
-    public void setup() {
-        reset(piggyBankService);
+    @Test
+    public void givenPiggyBankWhenEmptyReturnsNotNull() throws Exception {
+        PiggyBank piggyBank = piggyBankService.retrieveStatus();
+        assertThat(piggyBank).isNotNull();
+    }
+
+    /**
+     * Given a Piggy Bank it examines that it is set to empty values.
+     *
+     * @throws Exception
+     */
+    @Test
+    public void givenPiggyBankWhenEmptyReturnsNoCountNoDenomination() throws Exception {
+        PiggyBank piggyBank = piggyBankService.retrieveStatus();
+        assertThat(piggyBank.getSize()).isEqualTo(0);
+        assertThat(piggyBank.getCoins().isEmpty()).isTrue();
+    }
+
+    /**
+     * Given a Piggy Bank When a 20 coin is inserted it returns OK as a valid operation.
+     *
+     * @throws Exception
+     */
+    @Test
+    public void givenPiggyBankWhenNotNullAndInsertACoindOfVal20ReturnOK() throws Exception {
+        String coinValue = "20";
+        PiggyBankStatus inserted = piggyBankService.insertCoin(coinValue);
+        //assertThat(inserted).isNotNull();
+        //assertThat(inserted.getError()).isEqualTo(0);
+    }
+
+    /**
+     * Given a Piggy Bank When a 150 coin is inserted it returns not OK as an invalid operation
+     * with a message indicating the cause.
+     */
+    @Test
+    public void givenPiggyBankWhenNotNullAndInsertACoinOfValue150ReturnNotOKWithMessage() {
+        String coinValue = "150";
+        PiggyBankStatus inserted = piggyBankService.insertCoin(coinValue);
+        //assertThat(inserted).isNotNull();
+        //assertThat(inserted.getError()).isEqualTo(1);
+        //assertThat(inserted.getMsg()).isEqualTo(ERROR_MSG_COIN_INVALID_DENOMINATION);
     }
 }

@@ -13,6 +13,9 @@
  -----------------------------------------------------------------------------*/
 package com.csoftz.gap.java.tech.test.service.intr;
 
+import com.csoftz.gap.java.tech.test.domain.PiggyBank;
+import com.csoftz.gap.java.tech.test.domain.PiggyBankStatus;
+
 /**
  * Service interface to handle Piggy Bank operations.
  *
@@ -21,4 +24,19 @@ package com.csoftz.gap.java.tech.test.service.intr;
  * @since 1.8 (JDK), May.19/2018
  */
 public interface PiggyBankService {
+    /**
+     * Retrieves the information for a Piggy Bank instance.
+     *
+     * @return Reference for Piggy Bank.
+     */
+    PiggyBank retrieveStatus();
+
+    /**
+     * Adds a new coin to the Piggy Bank System. If the coindValue is not
+     * a valid denomintation the returned status will offer a clue about it.
+     *
+     * @param coinValue
+     * @return The Result of the operation as a PiggyBankStatus object.
+     */
+    PiggyBankStatus insertCoin(String coinValue);
 }
