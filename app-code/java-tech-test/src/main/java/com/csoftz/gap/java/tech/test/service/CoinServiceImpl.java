@@ -3,8 +3,8 @@
 /* Description:   Service implementation to handle Coin operations.           */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
 /* Date:          May.19/2018                                                 */
-/* Last Modified: May.19/2018                                                 */
-/* Version:       1.1                                                         */
+/* Last Modified: May.20/2018                                                 */
+/* Version:       1.2                                                         */
 /* Copyright (c), 2018 CSoftZ                                                 */
 /*----------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------
@@ -22,11 +22,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.joining;
+
 /**
  * Service implementation to handle Coin operations.
  *
  * @author Carlos Adolfo Ortiz Quirós (COQ)
- * @version 1.1, May.19/2018
+ * @version 1.2, May.20/2018
  * @since 1.8 (JDK), May.19/2018
  */
 @Service
@@ -50,7 +52,7 @@ public class CoinServiceImpl implements CoinService {
     }
 
     /**
-     * Validates that given coin value is in the valid registered coins.
+     * Validates that given coin value is in the valid registered coinsStore.
      *
      * @param coinValue The coin value to test.
      * @return True if it is registered.
@@ -95,5 +97,20 @@ public class CoinServiceImpl implements CoinService {
         }
         log.debug("Rslt=[{}]", false);
         return false;
+    }
+
+    /**
+     * Ask service about the registered coinsStore so far.
+     *
+     * @return A CSV formatted values of registered coinsStore. It
+     * does not put spaces for every coin value.
+     */
+    @Override
+    public String retrieveRegistered() {
+        log.debug("Executing retrieveRegistered()");
+        String rslt = coinsList.stream()
+            .collect(joining(","));
+        log.debug("Registered coin values=[{}]", rslt);
+        return rslt;
     }
 }

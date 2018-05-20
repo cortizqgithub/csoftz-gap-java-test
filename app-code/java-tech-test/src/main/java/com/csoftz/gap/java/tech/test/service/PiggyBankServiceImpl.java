@@ -3,8 +3,8 @@
 /* Description:   Service implementation to handle Piggy Bank operations.     */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
 /* Date:          May.19/2018                                                 */
-/* Last Modified: May.19/2018                                                 */
-/* Version:       1.1                                                         */
+/* Last Modified: May.20/2018                                                 */
+/* Version:       1.2                                                         */
 /* Copyright (c), 2018 CSoftZ                                                 */
 /*----------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------
@@ -21,15 +21,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import static com.csoftz.gap.java.tech.test.common.consts.GlobalConsts.ERROR_CODE_COIN_INVALID_DENOMINATION;
+import java.util.Arrays;
+import java.util.Map;
+
 import static com.csoftz.gap.java.tech.test.common.consts.GlobalConsts.CODE_OK;
+import static com.csoftz.gap.java.tech.test.common.consts.GlobalConsts.ERROR_CODE_COIN_INVALID_DENOMINATION;
 import static com.csoftz.gap.java.tech.test.common.consts.GlobalConsts.ERROR_MSG_COIN_INVALID_DENOMINATION;
 
 /**
  * Service implementation to handle Piggy Bank operations.
  *
  * @author Carlos Adolfo Ortiz Quirós (COQ)
- * @version 1.1, May.19/2018
+ * @version 1.2, May.20/2018
  * @since 1.8 (JDK), May.19/2018
  */
 @Service
@@ -40,11 +43,29 @@ public class PiggyBankServiceImpl implements PiggyBankService {
 
     /**
      * Constructor with parameters
+     *
      * @param coinService Injecs coin service to help in knowing valid coin values.
      */
     public PiggyBankServiceImpl(CoinService coinService) {
         this.coinService = coinService;
         this.piggyBank = new PiggyBank();
+    }
+
+    /**
+     * Configures the service and its dependencies.
+     *
+     * @param validCoinValues The list of valid coin values in CSV format, e.g., "50, 100, 200, 500, 1000".
+     */
+    public void initialize(String validCoinValues) {
+        log.debug("Executing initialize()");
+        log.debug("Using coin denominations:[{}]", validCoinValues);
+        this.coinService.init(validCoinValues);
+
+        String registeredCoins = this.coinService.retrieveRegistered();
+        this.piggyBank.setSize(0);
+        Map<String, Integer> coinStore = this.piggyBank.getCoinsStore();
+        String[] coins = registeredCoins.split(",");
+        Arrays.stream(coins).forEach(c -> coinStore.put(c.trim(), 0));
     }
 
     /**
@@ -79,6 +100,10 @@ public class PiggyBankServiceImpl implements PiggyBankService {
                 .error(ERROR_CODE_COIN_INVALID_DENOMINATION)
                 .msg(ERROR_MSG_COIN_INVALID_DENOMINATION).build();
         } else {
+            Integer selValue = piggyBank.getCoinsStore().get(coinValue);
+            selValue += 1;
+            piggyBank.getCoinsStore().put(coinValue, selValue);
+            piggyBank.setSize(piggyBank.getSize() + 1);
             piggyBankResponse = PiggyBankResponse.builder()
                 .error(CODE_OK)
                 .msg("").build();

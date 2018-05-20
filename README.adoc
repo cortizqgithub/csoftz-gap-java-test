@@ -1,9 +1,15 @@
 = csoftz-gap-java-test README
 
-V1.0.0-May.19/2018
+V1.0.0-May.20/2018
 
 Contains the files that support the Technical Test for GAP (Global Acceleration Partners).
 
 Here we find some folders.
 The main folder is named 'app-code' which contains all the source code for the solution.
 
+== REST Endpoints
+* http://localhost:8080/api/v1/piggy-bank/status
+* http://localhost:8080/api/v1/piggy-bank/insert/{coin}
+* http://localhost:8080/api/v1/coin/list
+* http://localhost:8080/api/v1/piggy-bank/size
+* http://localhost:8080/api/v1/piggy-bank/saved/coins

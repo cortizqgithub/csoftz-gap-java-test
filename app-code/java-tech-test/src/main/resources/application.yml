@@ -6,3 +6,9 @@ logging:
   level:
     root: info
     com.csoftz.gap.java.tech.test : info
+
+piggy:
+  bank:
+    valid:
+      coin:
+        values: abc,   50,100,200,500,1000

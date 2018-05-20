@@ -4,8 +4,8 @@
 /*                (Tests)                                                     */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
 /* Date:          May.19/2018                                                 */
-/* Last Modified: May.19/2018                                                 */
-/* Version:       1.1                                                         */
+/* Last Modified: May.20/2018                                                 */
+/* Version:       1.2                                                         */
 /* Copyright (c), 2018 CSoftZ                                                 */
 /*----------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------
@@ -25,7 +25,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * Service implementation to handle Coin operations (Tests).
  *
  * @author Carlos Adolfo Ortiz Quirós (COQ)
- * @version 1.1, May.19/2018
+ * @version 1.2, May.20/2018
  * @since 1.8 (JDK), May.19/2018
  */
 public class CoinServiceTests {
@@ -83,7 +83,8 @@ public class CoinServiceTests {
 
     /**
      * Chacks a new value is registered and valid for usage.
-     *  @throws Exception Throws any failure in code execution.
+     *
+     * @throws Exception Throws any failure in code execution.
      */
     @Test
     public void givenCoinWhenAddsAnotherValueReturnsTrue() throws Exception {
@@ -92,5 +93,17 @@ public class CoinServiceTests {
         boolean isValid = coinService.validate(coinValue);
         assertThat(registered).isEqualTo(true);
         assertThat(isValid).isEqualTo(true);
+    }
+
+    /**
+     * Checks Coin Service registered coin values.
+     */
+    @Test
+    public void givenCoinWhenNotEmptyReturnRegisteredCoinsAsCSV() {
+        String registeredCoins = coinService.retrieveRegistered();
+        assertThat(registeredCoins)
+            .isNotNull()
+            .isNotEmpty()
+            .isEqualTo("50,100,200,500,1000");
     }
 }

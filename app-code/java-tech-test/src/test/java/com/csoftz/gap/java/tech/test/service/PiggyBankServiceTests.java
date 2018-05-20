@@ -4,8 +4,8 @@
 /*                (Tests)                                                     */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
 /* Date:          May.19/2018                                                 */
-/* Last Modified: May.19/2018                                                 */
-/* Version:       1.1                                                         */
+/* Last Modified: May.20/2018                                                 */
+/* Version:       1.2                                                         */
 /* Copyright (c), 2018 CSoftZ                                                 */
 /*----------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------
@@ -27,15 +27,15 @@ import static com.csoftz.gap.java.tech.test.common.consts.GlobalConsts.COIN_VALU
 import static com.csoftz.gap.java.tech.test.common.consts.GlobalConsts.ERROR_CODE_COIN_INVALID_DENOMINATION;
 import static com.csoftz.gap.java.tech.test.common.consts.GlobalConsts.ERROR_MSG_COIN_INVALID_DENOMINATION;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.when;
 
 /**
  * Service implementation to handle Piggy Bank operations (Tests).
  *
  * @author Carlos Adolfo Ortiz Quirós (COQ)
- * @version 1.1, May.19/2018
+ * @version 1.2, May.20/2018
  * @since 1.8 (JDK), May.19/2018
  */
 public class PiggyBankServiceTests {
@@ -46,7 +46,7 @@ public class PiggyBankServiceTests {
     private static PiggyBankService piggyBankService;
 
     /*
-    * Helper services
+     * Helper services
      */
     private static CoinService coinService;
 
@@ -64,7 +64,10 @@ public class PiggyBankServiceTests {
      */
     @Before
     public void setup() {
+        String validCoinValues = "50,100,200,500,1000";
         reset(coinService);
+        when(coinService.retrieveRegistered()).thenReturn(validCoinValues);
+        piggyBankService.initialize(validCoinValues);
     }
 
     /**
@@ -84,10 +87,21 @@ public class PiggyBankServiceTests {
      * @throws Exception Throws any failure in code execution.
      */
     @Test
-    public void givenPiggyBankWhenEmptyReturnsNoCountNoDenomination() throws Exception {
+    public void givenPiggyBankWhenNotEmptyReturnsNonEmptyStatus() throws Exception {
         PiggyBank piggyBank = piggyBankService.retrieveStatus();
         assertThat(piggyBank.getSize()).isEqualTo(0);
-        assertThat(piggyBank.getCoins().isEmpty()).isTrue();
+        assertThat(piggyBank.getCoinsStore().isEmpty()).isFalse();
+        assertThat(piggyBank.getCoinsStore().size()).isEqualTo(5);
+    }
+
+    /**
+     * Checks if Piggy Bank can handle registered Coin denominations.
+     */
+    @Test
+    public void givenPiggyBankWhenNotEmptyCheckItHasValidCoinEntries() {
+        PiggyBank piggyBank = piggyBankService.retrieveStatus();
+        String keys = piggyBank.getCoinsStore().keySet().toString();
+        assertThat(keys).isEqualTo("[100, 1000, 200, 50, 500]");
     }
 
     /**

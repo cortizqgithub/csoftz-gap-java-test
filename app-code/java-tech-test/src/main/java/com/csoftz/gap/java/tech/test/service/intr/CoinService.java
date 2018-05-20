@@ -3,8 +3,8 @@
 /* Description:   Service interface to handle Coin operations.                */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
 /* Date:          May.19/2018                                                 */
-/* Last Modified: May.19/2018                                                 */
-/* Version:       1.1                                                         */
+/* Last Modified: May.20/2018                                                 */
+/* Version:       1.2                                                         */
 /* Copyright (c), 2018 CSoftZ                                                 */
 /*----------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------
@@ -17,7 +17,7 @@ package com.csoftz.gap.java.tech.test.service.intr;
  * Service interface to handle Coin operations.
  *
  * @author Carlos Adolfo Ortiz Quirós (COQ)
- * @version 1.1, May.19/2018
+ * @version 1.2, May.20/2018
  * @since 1.8 (JDK), May.19/2018
  */
 public interface CoinService {
@@ -31,7 +31,7 @@ public interface CoinService {
     void init(String s);
 
     /**
-     * Validates that given coin value is in the valid registered coins.
+     * Validates that given coin value is in the valid registered coinsStore.
      *
      * @param coinValue The coin value to test.
      * @return True if it is registered.
@@ -45,4 +45,12 @@ public interface CoinService {
      * @return True if successful registration.
      */
     boolean register(String coinValue);
+
+    /**
+     * Ask service about the registered coinsStore so far.
+     *
+     * @return A CSV formatted values of registered coinsStore. It
+     * does not put spaces for every coin value.
+     */
+    String retrieveRegistered();
 }
