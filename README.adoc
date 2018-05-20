@@ -5,11 +5,26 @@ V1.0.0-May.20/2018
 Contains the files that support the Technical Test for GAP (Global Acceleration Partners).
 
 Here we find some folders.
-The main folder is named 'app-code' which contains all the source code for the solution.
+
+* *docs:* Contains documentation about the project in addition to this file.
+* *app-code:* Contains the source code for the project, written in _Java_ using _Spring Boot_ (v2.0.2), requires JDK V8 or later (verified with JDK 9). This 
+folder also contains a folder with the unit tests.
+
+[NOTE]
+====
+All Controllers allow the CORS setting allowing all origins, all headers and all
+HTTP Methods (this is only for demo purposes in production this should be restricted).
+
+See https://github.com/spring-projects/spring-framework/blob/master/src/docs/asciidoc/web/webflux-cors.adoc
+====
 
 == REST Endpoints
-* http://localhost:8080/api/v1/piggy-bank/status
-* http://localhost:8080/api/v1/piggy-bank/insert/{coin}
-* http://localhost:8080/api/v1/coin/list
-* http://localhost:8080/api/v1/piggy-bank/size
-* http://localhost:8080/api/v1/piggy-bank/saved/coins
+To demonstrate the application, there are a few REST points to exercise the options implemented.
+
+Here [server] points to where you have deployed this application, and [port] is the pint where it listens inside the [server].
+
+* http://[server]:[port]:8080/api/v1/piggy-bank/status Refers to the way the Piggy Bank internal information is.
+* http://[server]:[port]:8080/api/v1/piggy-bank/insert/{coin} Asks the Piggy Bank to insert another coin. If the coin is invalid it will report with a error/msg.
+* http://[server]:[port]:8080/api/v1/coin/list Shows the valid coin values used for saving coins in the Piggy Bank.
+* http://[server]:[port]:8080/api/v1/piggy-bank/size This tells how many coins (total) there are in the Piggy Bank.
+* http://[server]:[port]:8080/api/v1/piggy-bank/saved/coins This tells how many coins per coin denomination there are in the Piggy Bank.

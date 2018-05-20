@@ -19,6 +19,7 @@ import com.csoftz.gap.java.tech.test.service.intr.PiggyBankService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,6 +35,7 @@ import java.util.Map;
  * @version 1.2, May.20/2018
  * @since 1.8 (JDK), May.19/2018
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/api/v1/piggy-bank")
 public class PiggyBankController {

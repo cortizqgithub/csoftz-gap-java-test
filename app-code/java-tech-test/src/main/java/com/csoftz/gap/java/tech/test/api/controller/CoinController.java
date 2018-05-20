@@ -16,6 +16,7 @@ package com.csoftz.gap.java.tech.test.api.controller;
 import com.csoftz.gap.java.tech.test.service.intr.CoinService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,6 +32,7 @@ import java.util.stream.Collectors;
  * @version 1.2, May.20/2018
  * @since 1.8 (JDK), May.19/2018
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/api/v1/coin")
 public class CoinController {
