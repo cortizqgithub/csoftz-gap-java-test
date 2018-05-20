@@ -19,6 +19,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static com.csoftz.gap.java.tech.test.common.consts.GlobalConsts.COIN_VALUE_FIFTY;
+import static com.csoftz.gap.java.tech.test.common.consts.GlobalConsts.COIN_VALUE_TWO_HUNDRED;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -45,7 +46,24 @@ public class CoinServiceTests {
     }
 
     /**
-     * Checks that the 50 coin denomination is registered.
+     * Checks that invalid coin denominations are not registered.
+     * That is, if the following coin denomination setting is tried
+     * "abc, 50, cc      , mm, 1000, " only "50,1000" are considered.
+     *
+     * @throws Exception Throws any failure in code execution.
+     */
+    @Test
+    public void givenCoinWhenInitDiscardInvalidElements() throws Exception {
+        String coinDenomination = "abc, 50, cc      , mm, 50, 1000, ";
+        String expectedCoinDenomination = "50,1000";
+        this.coinService.init(coinDenomination);
+
+        String registeredCoinDenomination = this.coinService.retrieveRegistered();
+        assertThat(registeredCoinDenomination).isEqualTo(expectedCoinDenomination);
+    }
+
+    /**
+     * Checks that the 50 coin denomination is an initial registered coin denomination.
      *
      * @throws Exception Throws any failure in code execution.
      */
@@ -57,7 +75,7 @@ public class CoinServiceTests {
     }
 
     /**
-     * Checks that 150 coin denomination is not registered.
+     * Checks that 150 coin denomination is not an initial registered coin denomination.
      *
      * @throws Exception Throws any failure in code execution.
      */
@@ -78,7 +96,30 @@ public class CoinServiceTests {
         String coinValue = "abc";
         boolean registered = coinService.register(coinValue);
         assertThat(registered).isEqualTo(false);
+    }
 
+    /**
+     * Checks that a coin value when it is empty cannot be registered as a valid entry.
+     *
+     * @throws Exception Throws any failure in code execution.
+     */
+    @Test
+    public void givenCoinWhenAddsEmptyCoinValueReturnsFalse() throws Exception {
+        String coinValue = "";
+        boolean registered = coinService.register(coinValue);
+        assertThat(registered).isEqualTo(false);
+    }
+
+    /**
+     * Try to register an existing valid coin denomination which is not allowed.
+     *
+     * @throws Exception Throws any failure in code execution.
+     */
+    @Test
+    public void givenCoinWhenAddsADuplicateCoinValueReturnsFalse() throws Exception {
+        String coinValue = COIN_VALUE_TWO_HUNDRED;
+        boolean registered = coinService.register(coinValue);
+        assertThat(registered).isEqualTo(false);
     }
 
     /**

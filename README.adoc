@@ -23,8 +23,9 @@ To demonstrate the application, there are a few REST points to exercise the opti
 
 Here [server] points to where you have deployed this application, and [port] is the pint where it listens inside the [server].
 
-* http://[server]:[port]:8080/api/v1/piggy-bank/status Refers to the way the Piggy Bank internal information is.
-* http://[server]:[port]:8080/api/v1/piggy-bank/insert/{coin} Asks the Piggy Bank to insert another coin. If the coin is invalid it will report with a error/msg.
-* http://[server]:[port]:8080/api/v1/coin/list Shows the valid coin values used for saving coins in the Piggy Bank.
-* http://[server]:[port]:8080/api/v1/piggy-bank/size This tells how many coins (total) there are in the Piggy Bank.
-* http://[server]:[port]:8080/api/v1/piggy-bank/saved/coins This tells how many coins per coin denomination there are in the Piggy Bank.
+* http://[server]:[port]/api/v1/piggy-bank/status Refers to the way the Piggy Bank internal information is handled.
+* http://[server]:[port]/api/v1/piggy-bank/insert/{coin} Asks the Piggy Bank to insert another coin. If the coin is invalid it will report with a error/msg.
+* http://[server]:[port]/api/v1/coin/list Shows the valid coin values used for saving coins in the Piggy Bank.
+* http://[server]:[port]/api/v1/piggy-bank/size This tells how many coins (total) there are in the Piggy Bank.
+* http://[server]:[port]/api/v1/piggy-bank/saved/coins This tells how many coins per coin denomination there are in the Piggy Bank.
+* http://[server]:[port]/api/v1/piggy-bank/remove Try to withdraw a coin, but action is not allowed.

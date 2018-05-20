@@ -46,4 +46,10 @@ public interface PiggyBankService {
      * @return The Result of the operation as a PiggyBankResponse object.
      */
     PiggyBankResponse insertCoin(String coinValue);
+
+    /**
+     * Removes any coin from Piggy Bank.
+     * @return The Result of the operation as a PiggyBankResponse object.
+     */
+    PiggyBankResponse remove();
 }

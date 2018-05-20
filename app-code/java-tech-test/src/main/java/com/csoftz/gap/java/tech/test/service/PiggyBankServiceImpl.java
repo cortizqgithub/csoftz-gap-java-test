@@ -25,7 +25,9 @@ import java.util.Arrays;
 import java.util.Map;
 
 import static com.csoftz.gap.java.tech.test.common.consts.GlobalConsts.CODE_OK;
+import static com.csoftz.gap.java.tech.test.common.consts.GlobalConsts.ERROR_CODE_CANNOT_WITHDRAW_COIN;
 import static com.csoftz.gap.java.tech.test.common.consts.GlobalConsts.ERROR_CODE_COIN_INVALID_DENOMINATION;
+import static com.csoftz.gap.java.tech.test.common.consts.GlobalConsts.ERROR_MSG_CANNOT_WITHDRAW_COIN;
 import static com.csoftz.gap.java.tech.test.common.consts.GlobalConsts.ERROR_MSG_COIN_INVALID_DENOMINATION;
 
 /**
@@ -98,7 +100,8 @@ public class PiggyBankServiceImpl implements PiggyBankService {
         if (!isValid) {
             piggyBankResponse = PiggyBankResponse.builder()
                 .error(ERROR_CODE_COIN_INVALID_DENOMINATION)
-                .msg(ERROR_MSG_COIN_INVALID_DENOMINATION).build();
+                .msg(ERROR_MSG_COIN_INVALID_DENOMINATION)
+                .build();
         } else {
             Integer selValue = piggyBank.getCoinsStore().get(coinValue);
             selValue += 1;
@@ -106,9 +109,25 @@ public class PiggyBankServiceImpl implements PiggyBankService {
             piggyBank.setSize(piggyBank.getSize() + 1);
             piggyBankResponse = PiggyBankResponse.builder()
                 .error(CODE_OK)
-                .msg("").build();
+                .msg("")
+                .build();
         }
 
         return piggyBankResponse;
+    }
+
+    /**
+     * Removes any coin from Piggy Bank.
+     *
+     * @return The Result of the operation as a PiggyBankResponse object.
+     */
+    @Override
+    public PiggyBankResponse remove() {
+        log.debug("Executing remove()");
+        log.debug("As the specification dictates it is always forbidden. Maybe in the future this will be allowed.");
+        return PiggyBankResponse.builder()
+            .error(ERROR_CODE_CANNOT_WITHDRAW_COIN)
+            .msg(ERROR_MSG_CANNOT_WITHDRAW_COIN)
+            .build();
     }
 }

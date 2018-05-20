@@ -41,9 +41,11 @@ public class GlobalConsts {
      */
     public static final int CODE_OK = 0;
     public static final int ERROR_CODE_COIN_INVALID_DENOMINATION = -1;
+    public static final int ERROR_CODE_CANNOT_WITHDRAW_COIN = -2;
 
     /*
      * Piggy Bank Error Messages.
      */
     public static final String ERROR_MSG_COIN_INVALID_DENOMINATION = "Coin rejected. Valid coin denominations are: 50, 100, 200, 500 & 1000";
+    public static final String ERROR_MSG_CANNOT_WITHDRAW_COIN = "No coin can be withdrawn from Piggy Bank. Not allowed.";
 }

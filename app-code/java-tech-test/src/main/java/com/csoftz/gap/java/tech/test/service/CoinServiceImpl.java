@@ -18,9 +18,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.joining;
 
@@ -41,14 +41,18 @@ public class CoinServiceImpl implements CoinService {
      *
      * @param s List of valid coin values separated with comma, it is then split into
      *          individual values. Example, '50,100,200,500,100'. If for any reason a
-     *          duplicate value is given or the value is not integer, it is discarded.
+     *          duplicate value is given or the value is not integer, or it is empty, then
+     *          it is discarded.
      */
     @Override
     public void init(String s) {
         log.debug("Executing init()");
         log.debug("Parameter data=[{}]", s);
         String[] values = s.split(",");
-        coinsList = Arrays.stream(values).map(e -> e.trim()).collect(Collectors.toList());
+        coinsList = new ArrayList<>();
+        Arrays.stream(values)
+            .map(String::trim)
+            .forEach(this::register);
     }
 
     /**
@@ -69,6 +73,38 @@ public class CoinServiceImpl implements CoinService {
     }
 
     /**
+     * Used internally to determine if a candidate coinDenomination is not duplicated,
+     * is not empty and it is numeric.
+     *
+     * @param coinDenominationEval The coin denomination to evaluate.
+     * @return True if allowed.
+     */
+    private boolean validateCoinDenominationIsAllowed(String coinDenominationEval) {
+        log.debug("Executing validateEntryIsAllow");
+        log.debug("coinDenominationEval=[{}]", coinDenominationEval);
+        boolean rslt;
+
+        if (coinDenominationEval.isEmpty()) {
+            rslt = false;
+        } else {
+            boolean isValidNum = true;
+            try {
+                Integer.valueOf(coinDenominationEval);
+            } catch (NumberFormatException e) {
+                isValidNum = false;
+            }
+            if (isValidNum) {
+                boolean exist = this.validate(coinDenominationEval);
+                rslt = (!exist);
+            } else {
+                rslt = false;
+            }
+        }
+        log.debug("Evaluated coin Denomination is [{}]", rslt ? " allowed " : " disallowed");
+        return rslt;
+    }
+
+    /**
      * Registeres a new coin value.
      *
      * @param coinValue Value to set
@@ -78,25 +114,16 @@ public class CoinServiceImpl implements CoinService {
     public boolean register(String coinValue) {
         log.debug("Executing register()");
         log.debug("Parameter info=[{}]", coinValue);
-        boolean isValidNum = true;
 
-        try {
-            Integer.valueOf(coinValue);
-        } catch (NumberFormatException e) {
-            isValidNum = false;
-        }
-        if (isValidNum) {
-            boolean exist = this.validate(coinValue);
-            if (!exist) {
-                coinsList.add(coinValue);
-                log.debug("Rslt=[{}]", true);
-                return true;
-            }
-            log.debug("Rslt=[{}]", false);
+        boolean isCoinDenominationValid = this.validateCoinDenominationIsAllowed(coinValue);
+
+        log.debug("Given info=[{}] is [{}]", coinValue, isCoinDenominationValid);
+        if (!isCoinDenominationValid) {
             return false;
         }
-        log.debug("Rslt=[{}]", false);
-        return false;
+
+        this.coinsList.add(coinValue);
+        return true;
     }
 
     /**

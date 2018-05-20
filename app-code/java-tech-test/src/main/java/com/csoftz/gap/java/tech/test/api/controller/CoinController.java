@@ -56,9 +56,12 @@ public class CoinController {
      */
     @GetMapping("/list")
     public List<String> listCoinValues() {
+        log.debug("Executing listCoinValues()");
+
         String registeredCoinValues = coinService.retrieveRegistered();
         String[] registeredCoinValuesItems = registeredCoinValues.split(",");
         List<String> coinValuesList = Arrays.stream(registeredCoinValuesItems).collect(Collectors.toList());
+
         return coinValuesList;
     }
 }

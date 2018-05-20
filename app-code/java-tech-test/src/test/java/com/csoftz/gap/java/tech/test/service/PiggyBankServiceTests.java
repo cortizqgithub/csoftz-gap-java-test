@@ -24,7 +24,9 @@ import org.junit.Test;
 
 import static com.csoftz.gap.java.tech.test.common.consts.GlobalConsts.CODE_OK;
 import static com.csoftz.gap.java.tech.test.common.consts.GlobalConsts.COIN_VALUE_FIFTY;
+import static com.csoftz.gap.java.tech.test.common.consts.GlobalConsts.ERROR_CODE_CANNOT_WITHDRAW_COIN;
 import static com.csoftz.gap.java.tech.test.common.consts.GlobalConsts.ERROR_CODE_COIN_INVALID_DENOMINATION;
+import static com.csoftz.gap.java.tech.test.common.consts.GlobalConsts.ERROR_MSG_CANNOT_WITHDRAW_COIN;
 import static com.csoftz.gap.java.tech.test.common.consts.GlobalConsts.ERROR_MSG_COIN_INVALID_DENOMINATION;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
@@ -134,4 +136,17 @@ public class PiggyBankServiceTests {
         assertThat(inserted.getError()).isEqualTo(ERROR_CODE_COIN_INVALID_DENOMINATION);
         assertThat(inserted.getMsg()).isEqualTo(ERROR_MSG_COIN_INVALID_DENOMINATION);
     }
+
+    /**
+     * Given a Piggy Bank when one tries to remove any coin it responds as a forbidden action.
+     */
+    @Test
+    public void givenPigghBankWhenNotNullAndRemoveACoinReturnsInvalidOperation() {
+        PiggyBankResponse removed = piggyBankService.remove();
+        assertThat(removed).isNotNull();
+        assertThat(removed.getError()).isEqualTo(ERROR_CODE_CANNOT_WITHDRAW_COIN);
+        assertThat(removed.getMsg()).isEqualTo(ERROR_MSG_CANNOT_WITHDRAW_COIN);
+
+    }
+
 }

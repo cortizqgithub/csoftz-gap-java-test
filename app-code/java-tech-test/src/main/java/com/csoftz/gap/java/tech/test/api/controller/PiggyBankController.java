@@ -78,6 +78,7 @@ public class PiggyBankController {
      */
     @GetMapping("/status")
     public PiggyBank watchPiggyBankStatus() {
+        log.debug("Execution watchPiggyBankStatus()");
         return this.piggyBankService.retrieveStatus();
     }
 
@@ -89,6 +90,7 @@ public class PiggyBankController {
      */
     @GetMapping("/size")
     public Integer getPiggyBankTotalCoinsStored() {
+        log.debug("Executing getPiggyBankTotalCoinsStored()");
         return this.piggyBankService.retrieveStatus().getSize();
     }
 
@@ -100,17 +102,32 @@ public class PiggyBankController {
      */
     @GetMapping("/saved/coins")
     public Map<String, Integer> getPiggyBankSavedCoins() {
+        log.debug("Executing getPiggyBankSavedCoins()");
         return this.piggyBankService.retrieveStatus().getCoinsStore();
     }
 
     /**
      * Attemps to insert a coin into Piggy Bank.
+     * GET: /api/v1/piggy-bank/insert/{coin}
      *
      * @param coin A value representing the coin value
      * @return Error/Message indicating failure or success operation done.
      */
     @GetMapping("/insert/{coin}")
     public PiggyBankResponse insertCoin(@PathVariable String coin) {
+        log.debug("Executing insertCoin()");
         return this.piggyBankService.insertCoin(coin);
+    }
+
+    /**
+     * Attemps to withdraw a coin from Piggy Bank. NOTE: Rules for now disallow this operation.
+     * GET: /api/v1/piggy-bank/remove
+     *
+     * @return Error/Message indicating failure or success operation done.
+     */
+    @GetMapping("/remove")
+    public PiggyBankResponse removeCoin() {
+        log.debug("Executing removeCoin()");
+        return this.piggyBankService.remove();
     }
 }
