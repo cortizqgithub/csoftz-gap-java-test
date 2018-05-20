@@ -30,11 +30,17 @@ public class GlobalConsts {
     /*
      * Coins
      */
-    public static final String COIN_VALUE_TWENTY = "20";
+    public static final String COIN_VALUE_FIFTY = "50";
     public static final String COIN_VALUE_ONE_HUNDRED = "100";
     public static final String COIN_VALUE_TWO_HUNDRED = "200";
     public static final String COIN_VALUE_FIVE_HUNDRED = "500";
     public static final String COIN_VALUE_ONE_THOUSAND = "1000";
+
+    /**
+     * Piggy Bank Error Codes
+     */
+    public static final int CODE_OK = 0;
+    public static final int ERROR_CODE_COIN_INVALID_DENOMINATION = -1;
 
     /*
      * Piggy Bank Error Messages.

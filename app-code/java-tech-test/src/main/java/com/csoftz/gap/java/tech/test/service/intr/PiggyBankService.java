@@ -14,7 +14,7 @@
 package com.csoftz.gap.java.tech.test.service.intr;
 
 import com.csoftz.gap.java.tech.test.domain.PiggyBank;
-import com.csoftz.gap.java.tech.test.domain.PiggyBankStatus;
+import com.csoftz.gap.java.tech.test.domain.PiggyBankResponse;
 
 /**
  * Service interface to handle Piggy Bank operations.
@@ -36,7 +36,7 @@ public interface PiggyBankService {
      * a valid denomintation the returned status will offer a clue about it.
      *
      * @param coinValue
-     * @return The Result of the operation as a PiggyBankStatus object.
+     * @return The Result of the operation as a PiggyBankResponse object.
      */
-    PiggyBankStatus insertCoin(String coinValue);
+    PiggyBankResponse insertCoin(String coinValue);
 }

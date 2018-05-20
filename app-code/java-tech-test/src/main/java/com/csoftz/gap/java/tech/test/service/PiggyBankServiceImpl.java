@@ -14,11 +14,16 @@
 package com.csoftz.gap.java.tech.test.service;
 
 import com.csoftz.gap.java.tech.test.domain.PiggyBank;
-import com.csoftz.gap.java.tech.test.domain.PiggyBankStatus;
+import com.csoftz.gap.java.tech.test.domain.PiggyBankResponse;
+import com.csoftz.gap.java.tech.test.service.intr.CoinService;
 import com.csoftz.gap.java.tech.test.service.intr.PiggyBankService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
+import static com.csoftz.gap.java.tech.test.common.consts.GlobalConsts.ERROR_CODE_COIN_INVALID_DENOMINATION;
+import static com.csoftz.gap.java.tech.test.common.consts.GlobalConsts.CODE_OK;
+import static com.csoftz.gap.java.tech.test.common.consts.GlobalConsts.ERROR_MSG_COIN_INVALID_DENOMINATION;
 
 /**
  * Service implementation to handle Piggy Bank operations.
@@ -30,13 +35,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class PiggyBankServiceImpl implements PiggyBankService {
     private static final Logger log = LoggerFactory.getLogger(PiggyBankServiceImpl.class);
-
     private PiggyBank piggyBank;
+    private CoinService coinService;
 
     /**
-     * Default constructor.
+     * Constructor with parameters
+     * @param coinService Injecs coin service to help in knowing valid coin values.
      */
-    public PiggyBankServiceImpl() {
+    public PiggyBankServiceImpl(CoinService coinService) {
+        this.coinService = coinService;
         this.piggyBank = new PiggyBank();
     }
 
@@ -56,10 +63,27 @@ public class PiggyBankServiceImpl implements PiggyBankService {
      * a valid denomintation the returned status will offer a clue about it.
      *
      * @param coinValue
-     * @return The Result of the operation as a PiggyBankStatus object.
+     * @return The Result of the operation as a PiggyBankResponse object.
      */
     @Override
-    public PiggyBankStatus insertCoin(String coinValue) {
-        return null;
+    public PiggyBankResponse insertCoin(String coinValue) {
+        log.debug("Executing insertCoin()");
+        log.debug("Parameter coinValue=[{}]", coinValue);
+
+        PiggyBankResponse piggyBankResponse = null;
+        boolean isValid = coinService.validate(coinValue);
+        log.debug("given coinValue is valid=[{}]", isValid);
+
+        if (!isValid) {
+            piggyBankResponse = PiggyBankResponse.builder()
+                .error(ERROR_CODE_COIN_INVALID_DENOMINATION)
+                .msg(ERROR_MSG_COIN_INVALID_DENOMINATION).build();
+        } else {
+            piggyBankResponse = PiggyBankResponse.builder()
+                .error(CODE_OK)
+                .msg("").build();
+        }
+
+        return piggyBankResponse;
     }
 }
