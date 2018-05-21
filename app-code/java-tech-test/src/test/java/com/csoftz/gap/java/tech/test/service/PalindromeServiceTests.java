@@ -4,8 +4,8 @@
 /*                (Tests)                                                     */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
 /* Date:          May.19/2018                                                 */
-/* Last Modified: May.19/2018                                                 */
-/* Version:       1.1                                                         */
+/* Last Modified: May.20/2018                                                 */
+/* Version:       1.2                                                         */
 /* Copyright (c), 2018 CSoftZ                                                 */
 /*----------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------
@@ -15,38 +15,68 @@
 package com.csoftz.gap.java.tech.test.service;
 
 import com.csoftz.gap.java.tech.test.service.intr.PalindromeService;
-import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Test;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.reset;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Service implementation to handle Palindrome operations (Tests).
  *
  * @author Carlos Adolfo Ortiz Quirós (COQ)
- * @version 1.1, May.19/2018
+ * @version 1.2, May.20/2018
  * @since 1.8 (JDK), May.19/2018
  */
 public class PalindromeServiceTests {
     /*
      * Service to test.
      */
-    private static PalindromeService piggyBankService;
+    private static PalindromeService palindromeService;
 
     /**
      * Prepare helpers.
      */
     @BeforeClass
     public static void init() {
-        piggyBankService = mock(PalindromeService.class);
+        palindromeService = new PalindromeServiceImpl();
     }
 
     /**
-     * Prepare data for each test.
+     * Checks if the Empty String is a Palindrome.
+     *
+     * @throws Exception Throws any failure in code execution.
      */
-    @Before
-    public void setup() {
-        reset(piggyBankService);
+    @Test
+    public void givenPalindromeWhenInfoIsEmptyThenReturnsTrue() throws Exception {
+        String info = "";
+
+        Boolean isPalindrome = palindromeService.check(info);
+        assertThat(isPalindrome).isTrue();
+    }
+
+    /**
+     * Checks if non empty text that is known as a Palindrome text is checked as TRUE.
+     *
+     * @throws Exception Throws any failure in code execution.
+     */
+    @Test
+    public void givenPalindromeWhenPuttingAPalindromeTextThenReturnsTrue() throws Exception {
+        String info = "A nut for a jar of tuna";
+
+        Boolean isPalindrome = palindromeService.check(info);
+        assertThat(isPalindrome).isTrue();
+    }
+
+    /**
+     * Given a null string, it returns false.
+     *
+     * @throws Exception Throws any failure in code execution.
+     */
+    @Test
+    public void givenPalindromeWhenPuttingANullStringThenReturnsFalse() throws Exception {
+        String info = null;
+
+        Boolean isPalindrome = palindromeService.check(info);
+        assertThat(isPalindrome).isFalse();
     }
 }
