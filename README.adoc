@@ -6,9 +6,19 @@ Contains the files that support the Technical Test for GAP (Global Acceleration 
 
 Here we find some folders.
 
-* *docs:* Contains documentation about the project in addition to this file.
-* *app-code:* Contains the source code for the project, written in _Java_ using _Spring Boot_ (v2.0.2), requires JDK V8 or later (verified with JDK 9). This 
-folder also contains a folder with the unit tests.
+* *docs:* Contains documentation about the project in addition to this file. It is advisable that you 
+read the file named _GAP ProgrammingJavaTest-Answers.docx_ which will detail to you where things are located
+in regard to what is asked for.
+* *app-code:* Contains the source code for the project, written in _Java_ using _Spring Boot_ (v2.0.2), 
+requires JDK V8 or later (verified with JDK 9). It also uses a _Maven_ build system via a wrapper. This 
+folder also contains a folder with the unit tests to validate implementation. When run within an IDE or any 
+tool that measures a coverage, it has a 90% coverage.
+
+[IMPORTANT]
+====
+We encourage you to read the file _GAP ProgrammingJavaTest-Answers.docx_ located
+in the *_docs_* folder. It will document what's herein.
+====
 
 [NOTE]
 ====
@@ -18,15 +28,26 @@ HTTP Methods (this is only for demo purposes in production this should be restri
 See https://github.com/spring-projects/spring-framework/blob/master/src/docs/asciidoc/web/webflux-cors.adoc
 ====
 
-== REST Endpoints
+== REST End Points
 To demonstrate the application, there are a few REST points to exercise the options implemented.
 
 Here [server] points to where you have deployed this application, and [port] is the pint where it listens inside the [server].
 
+=== Coin Service End Points
+If you want to see the _Coin System_ in action use this link.
+
+* *_http://[server]:[port]/api/v1/coin/list_* Shows the valid coin values used for saving coins in the Piggy Bank.
+
+=== Pigyy Bank System
+If you want to see the _Piggy Bank System_ in action use these links.
+
 * *_http://[server]:[port]/api/v1/piggy-bank/status_* Refers to the way the Piggy Bank internal information is handled.
 * *_http://[server]:[port]/api/v1/piggy-bank/insert/{coin}_* Asks the Piggy Bank to insert another coin. If the coin is invalid it will report with a error/msg.
-* *_http://[server]:[port]/api/v1/coin/list_* Shows the valid coin values used for saving coins in the Piggy Bank.
 * *_http://[server]:[port]/api/v1/piggy-bank/size_* This tells how many coins (total) there are in the Piggy Bank.
 * *_http://[server]:[port]/api/v1/piggy-bank/saved/coins_* This tells how many coins per coin denomination there are in the Piggy Bank.
 * *_http://[server]:[port]/api/v1/piggy-bank/remove_* Try to withdraw a coin, but action is not allowed.
-* *_http://[server]:[port]/api/v1/palindrome/check?t={text}_* By suppling the {text} you can check if that supplied text is a palindrome one.
+
+=== Palindrome System
+If you want to see _Palindrome System_ in action use this link.
+
+* *_http://[server]:[port]/api/v1/palindrome/check?t={text}_* By supplying the {text} you can check if that supplied text is a palindrome one.
