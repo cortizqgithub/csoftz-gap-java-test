@@ -1,6 +1,6 @@
 = csoftz-gap-java-test README
 
-V1.0.0-May.20/2018
+V1.0.1-Sep.11/2018
 
 Contains the files that support the Technical Test for GAP (Global Acceleration Partners).
 
