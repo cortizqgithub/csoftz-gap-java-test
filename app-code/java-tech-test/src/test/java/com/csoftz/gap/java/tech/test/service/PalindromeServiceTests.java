@@ -43,7 +43,6 @@ public class PalindromeServiceTests {
 
     /**
      * Checks if the Empty String is a Palindrome.
-     *
      */
     @Test
     public void givenPalindromeWhenInfoIsEmptyThenReturnsTrue() {
@@ -55,7 +54,6 @@ public class PalindromeServiceTests {
 
     /**
      * Checks if non empty text that is known as a Palindrome text is checked as TRUE.
-     *
      */
     @Test
     public void givenPalindromeWhenPuttingAPalindromeTextThenReturnsTrue() {
@@ -67,13 +65,10 @@ public class PalindromeServiceTests {
 
     /**
      * Given a null string, it returns false.
-     *
      */
     @Test
     public void givenPalindromeWhenPuttingANullStringThenReturnsFalse() {
-        String info = null;
-
-        Boolean isPalindrome = palindromeService.check(info);
+        Boolean isPalindrome = palindromeService.check(null);
         assertThat(isPalindrome).isFalse();
     }
 }

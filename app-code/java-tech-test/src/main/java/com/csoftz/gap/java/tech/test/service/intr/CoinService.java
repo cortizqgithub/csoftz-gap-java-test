@@ -3,8 +3,8 @@
 /* Description:   Service interface to handle Coin operations.                */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
 /* Date:          May.19/2018                                                 */
-/* Last Modified: May.20/2018                                                 */
-/* Version:       1.2                                                         */
+/* Last Modified: Sep.11/2018                                                 */
+/* Version:       1.3                                                         */
 /* Copyright (c), 2018 CSoftZ                                                 */
 /*----------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------
@@ -17,7 +17,7 @@ package com.csoftz.gap.java.tech.test.service.intr;
  * Service interface to handle Coin operations.
  *
  * @author Carlos Adolfo Ortiz Quirós (COQ)
- * @version 1.2, May.20/2018
+ * @version 1.3, Sep.11/2018
  * @since 1.8 (JDK), May.19/2018
  */
 public interface CoinService {
@@ -39,7 +39,7 @@ public interface CoinService {
     boolean validate(String coinValue);
 
     /**
-     * Registeres a new coin value.
+     * Registers a new coin value.
      *
      * @param coinValue Value to set
      * @return True if successful registration.

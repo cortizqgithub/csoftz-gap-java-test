@@ -22,8 +22,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static java.util.stream.Collectors.joining;
-
 /**
  * Service implementation to handle Coin operations.
  *
@@ -105,7 +103,7 @@ public class CoinServiceImpl implements CoinService {
     }
 
     /**
-     * Registeres a new coin value.
+     * Registers a new coin value.
      *
      * @param coinValue Value to set
      * @return True if successful registration.
@@ -135,8 +133,11 @@ public class CoinServiceImpl implements CoinService {
     @Override
     public String retrieveRegistered() {
         log.debug("Executing retrieveRegistered()");
-        String rslt = coinsList.stream()
-                .collect(joining(","));
+
+        //coinsList.stream().collect(joining(","));
+        // --> Can be replaced by String.join(",", coinsList);
+
+        String rslt = String.join(",", coinsList);
         log.debug("Registered coin values=[{}]", rslt);
         return rslt;
     }

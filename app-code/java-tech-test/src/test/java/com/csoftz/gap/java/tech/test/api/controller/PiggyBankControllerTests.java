@@ -87,7 +87,7 @@ public class PiggyBankControllerTests {
      * @throws Exception Throws any failure in code execution.
      */
     @Test
-    public void givenPiggyBankControllerReturnsSavedCoina() throws Exception {
+    public void givenPiggyBankControllerReturnsSavedCoin() throws Exception {
         mockMvc.perform(get("/api/v1/piggy-bank/saved/coins"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json;charset=UTF-8"))
@@ -128,7 +128,7 @@ public class PiggyBankControllerTests {
      * @throws Exception Throws any failure in code execution.
      */
     @Test
-    public void givenPiggyBankControllerWhenInsertCoinNotValidReturnsErrr() throws Exception {
+    public void givenPiggyBankControllerWhenInsertCoinNotValidReturnsErr() throws Exception {
         mockMvc.perform(get("/api/v1/piggy-bank/insert/150"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json;charset=UTF-8"))

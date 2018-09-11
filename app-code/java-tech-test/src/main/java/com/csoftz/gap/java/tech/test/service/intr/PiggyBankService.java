@@ -3,7 +3,7 @@
 /* Description:   Service interface to handle Piggy Bank operations.          */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
 /* Date:          May.19/2018                                                 */
-/* Last Modified: Sep.10/2018                                                 */
+/* Last Modified: Sep.11/2018                                                 */
 /* Version:       1.3                                                         */
 /* Copyright (c), 2018 CSoftZ                                                 */
 /*----------------------------------------------------------------------------*/
@@ -20,7 +20,7 @@ import com.csoftz.gap.java.tech.test.domain.PiggyBankResponse;
  * Service interface to handle Piggy Bank operations.
  *
  * @author Carlos Adolfo Ortiz Quirós (COQ)
- * @version 1.3, Sep.10/2018
+ * @version 1.3, Sep.11/2018
  * @since 1.8 (JDK), May.19/2018
  */
 public interface PiggyBankService {
@@ -39,8 +39,8 @@ public interface PiggyBankService {
     PiggyBank retrieveStatus();
 
     /**
-     * Adds a new coin to the Piggy Bank System. If the coindValue is not
-     * a valid denomintation the returned status will offer a clue about it.
+     * Adds a new coin to the Piggy Bank System. If the coinValue is not
+     * a valid denomination the returned status will offer a clue about it.
      *
      * @param coinValue The coin to be inserted.
      * @return The Result of the operation as a PiggyBankResponse object.

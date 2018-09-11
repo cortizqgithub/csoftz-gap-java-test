@@ -3,7 +3,7 @@
 /* Description:   REST Api for Piggy Bank end-points.                         */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
 /* Date:          May.19/2018                                                 */
-/* Last Modified: Sep.10/2018                                                 */
+/* Last Modified: Sep.11/2018                                                 */
 /* Version:       1.3                                                         */
 /* Copyright (c), 2018 CSoftZ                                                 */
 /*----------------------------------------------------------------------------*/
@@ -32,7 +32,7 @@ import java.util.Map;
  * REST Api for Piggy Bank end-points.
  *
  * @author Carlos Adolfo Ortiz Quirós (COQ)
- * @version 1.3, Sep.10/2018
+ * @version 1.3, Sep.11/2018
  * @since 1.8 (JDK), May.19/2018
  */
 @CrossOrigin
@@ -40,7 +40,7 @@ import java.util.Map;
 @RequestMapping("/api/v1/piggy-bank")
 public class PiggyBankController {
     private static final Logger log = LoggerFactory.getLogger(PiggyBankController.class);
-    private PiggyBankService piggyBankService;
+    private final PiggyBankService piggyBankService;
 
     @Value("${piggy.bank.valid.coin.values}")
     private String validCoinValues;
@@ -58,8 +58,8 @@ public class PiggyBankController {
     /**
      * Configure service internal properties accordingly. In fact it loads all
      * configured schemas into a hashmap so it is always available.
-     *
-     * @PostConstruct means that this is called after the bean has been set-up.
+     * <p>
+     * 'PostConstruct' means that this is called after the bean has been set-up.
      * Use this method to check that the bean has been set-up
      * correctly.
      */
@@ -73,7 +73,7 @@ public class PiggyBankController {
      * Explores the current status for Piggy Bank.
      * GET: /api/v1/piggy-bank/status
      *
-     * @return
+     * @return Status of PiggyBank
      */
     @GetMapping("/status")
     public PiggyBank watchPiggyBankStatus() {
@@ -85,7 +85,7 @@ public class PiggyBankController {
      * Get the total amount of coins saved in the Piggy Bank.
      * GET: /api/v1/piggy-bank/size
      *
-     * @return
+     * @return Number of items stored in PiggyBank
      */
     @GetMapping("/size")
     public Integer getPiggyBankTotalCoinsStored() {
@@ -97,7 +97,7 @@ public class PiggyBankController {
      * Get the saved coins grouped by coin denomination.
      * GET: /api/v1/piggy-bank/saved/coins
      *
-     * @return
+     * @return Number of coins saved.
      */
     @GetMapping("/saved/coins")
     public Map<String, Integer> getPiggyBankSavedCoins() {
@@ -106,7 +106,7 @@ public class PiggyBankController {
     }
 
     /**
-     * Attemps to insert a coin into Piggy Bank.
+     * Attempts to insert a coin into Piggy Bank.
      * GET: /api/v1/piggy-bank/insert/{coin}
      *
      * @param coin A value representing the coin value
@@ -119,7 +119,7 @@ public class PiggyBankController {
     }
 
     /**
-     * Attemps to withdraw a coin from Piggy Bank. NOTE: Rules for now disallow this operation.
+     * Attempts to withdraw a coin from Piggy Bank. NOTE: Rules for now disallow this operation.
      * GET: /api/v1/piggy-bank/remove
      *
      * @return Error/Message indicating failure or success operation done.

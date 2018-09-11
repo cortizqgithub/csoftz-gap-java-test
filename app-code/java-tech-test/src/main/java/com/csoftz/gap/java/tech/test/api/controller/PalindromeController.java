@@ -34,7 +34,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/palindrome")
 public class PalindromeController {
     private static final Logger log = LoggerFactory.getLogger(PalindromeController.class);
-    private PalindromeService palindromeService;
+    private final PalindromeService palindromeService;
 
     /**
      * Constructor with parameters.

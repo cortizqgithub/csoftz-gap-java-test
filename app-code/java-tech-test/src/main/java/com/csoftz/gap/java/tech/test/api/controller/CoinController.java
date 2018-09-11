@@ -37,7 +37,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/v1/coin")
 public class CoinController {
     private static final Logger log = LoggerFactory.getLogger(CoinController.class);
-    private CoinService coinService;
+    private final CoinService coinService;
 
     /**
      * Constructor with parameters

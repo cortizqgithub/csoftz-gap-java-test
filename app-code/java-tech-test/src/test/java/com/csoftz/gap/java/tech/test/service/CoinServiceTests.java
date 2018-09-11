@@ -49,7 +49,6 @@ public class CoinServiceTests {
      * Checks that invalid coin denominations are not registered.
      * That is, if the following coin denomination setting is tried
      * "abc, 50, cc      , mm, 1000, " only "50,1000" are considered.
-     *
      */
     @Test
     public void givenCoinWhenInitDiscardInvalidElements() {
@@ -63,18 +62,15 @@ public class CoinServiceTests {
 
     /**
      * Checks that the 50 coin denomination is an initial registered coin denomination.
-     *
      */
     @Test
     public void givenCoinWhenItsValueIs50ThenItIsKnownReturnsTrue() {
-        String coinValue = COIN_VALUE_FIFTY;
-        boolean validCoin = coinService.validate(coinValue);
+        boolean validCoin = coinService.validate(COIN_VALUE_FIFTY);
         assertThat(validCoin).isEqualTo(true);
     }
 
     /**
      * Checks that 150 coin denomination is not an initial registered coin denomination.
-     *
      */
     @Test
     public void givenCoinWhenItsValueIs150ThenItIsUnknownReturnsFalse() {
@@ -85,7 +81,6 @@ public class CoinServiceTests {
 
     /**
      * Checks that a coin value which is not integer then it is rejected.
-     *
      */
     @Test
     public void givenCoinWhenAddsNonValidCoinValueReturnsFalse() {
@@ -96,7 +91,6 @@ public class CoinServiceTests {
 
     /**
      * Checks that a coin value when it is empty cannot be registered as a valid entry.
-     *
      */
     @Test
     public void givenCoinWhenAddsEmptyCoinValueReturnsFalse() {
@@ -107,18 +101,15 @@ public class CoinServiceTests {
 
     /**
      * Try to register an existing valid coin denomination which is not allowed.
-     *
      */
     @Test
     public void givenCoinWhenAddsADuplicateCoinValueReturnsFalse() {
-        String coinValue = COIN_VALUE_TWO_HUNDRED;
-        boolean registered = coinService.register(coinValue);
+        boolean registered = coinService.register(COIN_VALUE_TWO_HUNDRED);
         assertThat(registered).isEqualTo(false);
     }
 
     /**
-     * Chacks a new value is registered and valid for usage.
-     *
+     * Checks a new value is registered and valid for usage.
      */
     @Test
     public void givenCoinWhenAddsAnotherValueReturnsTrue() {

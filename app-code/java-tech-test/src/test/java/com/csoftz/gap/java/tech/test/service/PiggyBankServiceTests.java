@@ -74,7 +74,6 @@ public class PiggyBankServiceTests {
 
     /**
      * Given a Piggy Bank it examines it is returned as not null reference.
-     *
      */
     @Test
     public void givenPiggyBankWhenEmptyReturnsNotNull() {
@@ -84,7 +83,6 @@ public class PiggyBankServiceTests {
 
     /**
      * Given a Piggy Bank it examines that it is set to empty values.
-     *
      */
     @Test
     public void givenPiggyBankWhenNotEmptyReturnsNonEmptyStatus() {
@@ -106,10 +104,9 @@ public class PiggyBankServiceTests {
 
     /**
      * Given a Piggy Bank When a 50 coin is inserted it returns OK as a valid operation.
-     *
      */
     @Test
-    public void givenPiggyBankWhenNotNullAndInsertACoindOfVal50ReturnOK() {
+    public void givenPiggyBankWhenNotNullAndInsertACoinOfVal50ReturnOK() {
         String coinValue = COIN_VALUE_FIFTY;
         when(coinService.validate(coinValue)).thenReturn(true);
         PiggyBankResponse inserted = piggyBankService.insertCoin(coinValue);
@@ -121,7 +118,6 @@ public class PiggyBankServiceTests {
     /**
      * Given a Piggy Bank When a 150 coin is inserted it returns not OK as an invalid operation
      * with a message indicating the cause.
-     *
      */
     @Test
     public void givenPiggyBankWhenNotNullAndInsertACoinOfValue150ReturnNotOKWithMessage() {
@@ -137,12 +133,11 @@ public class PiggyBankServiceTests {
      * Given a Piggy Bank when one tries to remove any coin it responds as a forbidden action.
      */
     @Test
-    public void givenPigghBankWhenNotNullAndRemoveACoinReturnsInvalidOperation() {
+    public void givenPighBankWhenNotNullAndRemoveACoinReturnsInvalidOperation() {
         PiggyBankResponse removed = piggyBankService.remove();
         assertThat(removed).isNotNull();
         assertThat(removed.getError()).isEqualTo(ERROR_CODE_CANNOT_WITHDRAW_COIN);
         assertThat(removed.getMsg()).isEqualTo(ERROR_MSG_CANNOT_WITHDRAW_COIN);
-
     }
 
 }
