@@ -4,8 +4,8 @@
 /*                (Tests)                                                     */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
 /* Date:          May.19/2018                                                 */
-/* Last Modified: May.20/2018                                                 */
-/* Version:       1.2                                                         */
+/* Last Modified: Sep.11/2018                                                 */
+/* Version:       1.3                                                         */
 /* Copyright (c), 2018 CSoftZ                                                 */
 /*----------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------
@@ -37,7 +37,7 @@ import static org.mockito.Mockito.when;
  * Service implementation to handle Piggy Bank operations (Tests).
  *
  * @author Carlos Adolfo Ortiz Quirós (COQ)
- * @version 1.2, May.20/2018
+ * @version 1.3, Sep.11/2018
  * @since 1.8 (JDK), May.19/2018
  */
 public class PiggyBankServiceTests {
@@ -75,10 +75,9 @@ public class PiggyBankServiceTests {
     /**
      * Given a Piggy Bank it examines it is returned as not null reference.
      *
-     * @throws Exception Throws any failure in code execution.
      */
     @Test
-    public void givenPiggyBankWhenEmptyReturnsNotNull() throws Exception {
+    public void givenPiggyBankWhenEmptyReturnsNotNull() {
         PiggyBank piggyBank = piggyBankService.retrieveStatus();
         assertThat(piggyBank).isNotNull();
     }
@@ -86,10 +85,9 @@ public class PiggyBankServiceTests {
     /**
      * Given a Piggy Bank it examines that it is set to empty values.
      *
-     * @throws Exception Throws any failure in code execution.
      */
     @Test
-    public void givenPiggyBankWhenNotEmptyReturnsNonEmptyStatus() throws Exception {
+    public void givenPiggyBankWhenNotEmptyReturnsNonEmptyStatus() {
         PiggyBank piggyBank = piggyBankService.retrieveStatus();
         assertThat(piggyBank.getSize()).isEqualTo(0);
         assertThat(piggyBank.getCoinsStore().isEmpty()).isFalse();
@@ -109,10 +107,9 @@ public class PiggyBankServiceTests {
     /**
      * Given a Piggy Bank When a 50 coin is inserted it returns OK as a valid operation.
      *
-     * @throws Exception Throws any failure in code execution.
      */
     @Test
-    public void givenPiggyBankWhenNotNullAndInsertACoindOfVal50ReturnOK() throws Exception {
+    public void givenPiggyBankWhenNotNullAndInsertACoindOfVal50ReturnOK() {
         String coinValue = COIN_VALUE_FIFTY;
         when(coinService.validate(coinValue)).thenReturn(true);
         PiggyBankResponse inserted = piggyBankService.insertCoin(coinValue);
@@ -125,10 +122,9 @@ public class PiggyBankServiceTests {
      * Given a Piggy Bank When a 150 coin is inserted it returns not OK as an invalid operation
      * with a message indicating the cause.
      *
-     * @throws Exception Throws any failure in code execution.
      */
     @Test
-    public void givenPiggyBankWhenNotNullAndInsertACoinOfValue150ReturnNotOKWithMessage() throws Exception {
+    public void givenPiggyBankWhenNotNullAndInsertACoinOfValue150ReturnNotOKWithMessage() {
         String coinValue = "150";
         when(coinService.validate(coinValue)).thenReturn(false);
         PiggyBankResponse inserted = piggyBankService.insertCoin(coinValue);

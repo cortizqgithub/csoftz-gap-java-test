@@ -3,8 +3,8 @@
 /* Description:   REST Api for Coin end-points (Tests).                       */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
 /* Date:          May.20/2018                                                 */
-/* Last Modified: May.20/2018                                                 */
-/* Version:       1.1                                                         */
+/* Last Modified: Sep.11/2018                                                 */
+/* Version:       1.2                                                         */
 /* Copyright (c), 2018 CSoftZ                                                 */
 /*----------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------
@@ -38,7 +38,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * REST Api for Coin end-points (Tests).
  *
  * @author Carlos Adolfo Ortiz Quirós (COQ)
- * @version 1.1, May.20/2018
+ * @version 1.2, Sep.11/2018
  * @since 1.8 (JDK), May.20/2018
  */
 @RunWith(SpringRunner.class)
@@ -64,13 +64,13 @@ public class CoinControllerTests {
     @Test
     public void givenCoinControllerReturnsList() throws Exception {
         mockMvc.perform(get("/api/v1/coin/list"))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType("application/json;charset=UTF-8"))
-            .andExpect(jsonPath("$").value(Matchers.hasSize(5)))
-            .andExpect(jsonPath("$[0]").value(COIN_VALUE_FIFTY))
-            .andExpect(jsonPath("$[1]").value(COIN_VALUE_ONE_HUNDRED))
-            .andExpect(jsonPath("$[2]").value(COIN_VALUE_TWO_HUNDRED))
-            .andExpect(jsonPath("$[3]").value(COIN_VALUE_FIVE_HUNDRED))
-            .andExpect(jsonPath("$[4]").value(COIN_VALUE_ONE_THOUSAND));
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json;charset=UTF-8"))
+                .andExpect(jsonPath("$").value(Matchers.hasSize(5)))
+                .andExpect(jsonPath("$[0]").value(COIN_VALUE_FIFTY))
+                .andExpect(jsonPath("$[1]").value(COIN_VALUE_ONE_HUNDRED))
+                .andExpect(jsonPath("$[2]").value(COIN_VALUE_TWO_HUNDRED))
+                .andExpect(jsonPath("$[3]").value(COIN_VALUE_FIVE_HUNDRED))
+                .andExpect(jsonPath("$[4]").value(COIN_VALUE_ONE_THOUSAND));
     }
 }

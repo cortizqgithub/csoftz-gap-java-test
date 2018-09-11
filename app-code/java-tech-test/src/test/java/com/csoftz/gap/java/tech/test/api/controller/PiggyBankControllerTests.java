@@ -3,8 +3,8 @@
 /* Description:   REST Api for Piggy Bank end-points (Tests).                 */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
 /* Date:          May.19/2018                                                 */
-/* Last Modified: May.19/2018                                                 */
-/* Version:       1.1                                                         */
+/* Last Modified: Sep.11/2018                                                 */
+/* Version:       1.2                                                         */
 /* Copyright (c), 2018 CSoftZ                                                 */
 /*----------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------
@@ -36,7 +36,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * REST Api for Piggy Bank end-points (Tests).
  *
  * @author Carlos Adolfo Ortiz Quirós (COQ)
- * @version 1.1, May.19/2018
+ * @version 1.2, Sep.11/2018
  * @since 1.8 (JDK), May.19/2018
  */
 @RunWith(SpringRunner.class)
@@ -62,10 +62,10 @@ public class PiggyBankControllerTests {
     @Test
     public void givenPiggyBankControllerReturnsStatus() throws Exception {
         mockMvc.perform(get("/api/v1/piggy-bank/status"))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType("application/json;charset=UTF-8"))
-            .andExpect(jsonPath("$.size").isNotEmpty())
-            .andExpect(jsonPath("$.coinsStore").isMap());
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json;charset=UTF-8"))
+                .andExpect(jsonPath("$.size").isNotEmpty())
+                .andExpect(jsonPath("$.coinsStore").isMap());
     }
 
     /**
@@ -76,9 +76,9 @@ public class PiggyBankControllerTests {
     @Test
     public void givenPiggyBankControllerReturnsSize() throws Exception {
         mockMvc.perform(get("/api/v1/piggy-bank/size"))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType("application/json;charset=UTF-8"))
-            .andExpect(jsonPath("$").isNotEmpty());
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json;charset=UTF-8"))
+                .andExpect(jsonPath("$").isNotEmpty());
     }
 
     /**
@@ -89,9 +89,9 @@ public class PiggyBankControllerTests {
     @Test
     public void givenPiggyBankControllerReturnsSavedCoina() throws Exception {
         mockMvc.perform(get("/api/v1/piggy-bank/saved/coins"))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType("application/json;charset=UTF-8"))
-            .andExpect(jsonPath("$").isMap());
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json;charset=UTF-8"))
+                .andExpect(jsonPath("$").isMap());
     }
 
     /**
@@ -102,10 +102,10 @@ public class PiggyBankControllerTests {
     @Test
     public void givenPiggyBankControllerWhenRemoveCoinReturnsNotAllowed() throws Exception {
         mockMvc.perform(get("/api/v1/piggy-bank/remove"))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType("application/json;charset=UTF-8"))
-            .andExpect(jsonPath("$.error").value(ERROR_CODE_CANNOT_WITHDRAW_COIN))
-            .andExpect(jsonPath("$.msg").value(ERROR_MSG_CANNOT_WITHDRAW_COIN));
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json;charset=UTF-8"))
+                .andExpect(jsonPath("$.error").value(ERROR_CODE_CANNOT_WITHDRAW_COIN))
+                .andExpect(jsonPath("$.msg").value(ERROR_MSG_CANNOT_WITHDRAW_COIN));
     }
 
     /**
@@ -116,10 +116,10 @@ public class PiggyBankControllerTests {
     @Test
     public void givenPiggyBankControllerWhenInsertCoinValidReturnsOK() throws Exception {
         mockMvc.perform(get("/api/v1/piggy-bank/insert/50"))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType("application/json;charset=UTF-8"))
-            .andExpect(jsonPath("$.error").value(0))
-            .andExpect(jsonPath("$.msg").isEmpty());
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json;charset=UTF-8"))
+                .andExpect(jsonPath("$.error").value(0))
+                .andExpect(jsonPath("$.msg").isEmpty());
     }
 
     /**
@@ -130,9 +130,9 @@ public class PiggyBankControllerTests {
     @Test
     public void givenPiggyBankControllerWhenInsertCoinNotValidReturnsErrr() throws Exception {
         mockMvc.perform(get("/api/v1/piggy-bank/insert/150"))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType("application/json;charset=UTF-8"))
-            .andExpect(jsonPath("$.error").value(ERROR_CODE_COIN_INVALID_DENOMINATION))
-            .andExpect(jsonPath("$.msg").value(ERROR_MSG_COIN_INVALID_DENOMINATION));
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json;charset=UTF-8"))
+                .andExpect(jsonPath("$.error").value(ERROR_CODE_COIN_INVALID_DENOMINATION))
+                .andExpect(jsonPath("$.msg").value(ERROR_MSG_COIN_INVALID_DENOMINATION));
     }
 }

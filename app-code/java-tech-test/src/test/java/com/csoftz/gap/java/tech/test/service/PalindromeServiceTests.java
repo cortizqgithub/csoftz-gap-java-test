@@ -4,8 +4,8 @@
 /*                (Tests)                                                     */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
 /* Date:          May.19/2018                                                 */
-/* Last Modified: May.20/2018                                                 */
-/* Version:       1.2                                                         */
+/* Last Modified: Sep.11/2018                                                 */
+/* Version:       1.3                                                         */
 /* Copyright (c), 2018 CSoftZ                                                 */
 /*----------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------
@@ -24,7 +24,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * Service implementation to handle Palindrome operations (Tests).
  *
  * @author Carlos Adolfo Ortiz Quirós (COQ)
- * @version 1.2, May.20/2018
+ * @version 1.3, Sep.11/2018
  * @since 1.8 (JDK), May.19/2018
  */
 public class PalindromeServiceTests {
@@ -44,10 +44,9 @@ public class PalindromeServiceTests {
     /**
      * Checks if the Empty String is a Palindrome.
      *
-     * @throws Exception Throws any failure in code execution.
      */
     @Test
-    public void givenPalindromeWhenInfoIsEmptyThenReturnsTrue() throws Exception {
+    public void givenPalindromeWhenInfoIsEmptyThenReturnsTrue() {
         String info = "";
 
         Boolean isPalindrome = palindromeService.check(info);
@@ -57,10 +56,9 @@ public class PalindromeServiceTests {
     /**
      * Checks if non empty text that is known as a Palindrome text is checked as TRUE.
      *
-     * @throws Exception Throws any failure in code execution.
      */
     @Test
-    public void givenPalindromeWhenPuttingAPalindromeTextThenReturnsTrue() throws Exception {
+    public void givenPalindromeWhenPuttingAPalindromeTextThenReturnsTrue() {
         String info = "A nut for a jar of tuna";
 
         Boolean isPalindrome = palindromeService.check(info);
@@ -70,10 +68,9 @@ public class PalindromeServiceTests {
     /**
      * Given a null string, it returns false.
      *
-     * @throws Exception Throws any failure in code execution.
      */
     @Test
-    public void givenPalindromeWhenPuttingANullStringThenReturnsFalse() throws Exception {
+    public void givenPalindromeWhenPuttingANullStringThenReturnsFalse() {
         String info = null;
 
         Boolean isPalindrome = palindromeService.check(info);

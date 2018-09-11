@@ -3,8 +3,8 @@
 /* Description:   REST Api for Palindrome end-points. (Tests)                 */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
 /* Date:          May.19/2018                                                 */
-/* Last Modified: May.20/2018                                                 */
-/* Version:       1.2                                                         */
+/* Last Modified: Sep.11/2018                                                 */
+/* Version:       1.3                                                         */
 /* Copyright (c), 2018 CSoftZ                                                 */
 /*----------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------
@@ -32,7 +32,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * REST Api for Palindrome end-points. (Tests)
  *
  * @author Carlos Adolfo Ortiz Quirós (COQ)
- * @version 1.2, May.20/2018
+ * @version 1.3, Sep.11/2018
  * @since 1.8 (JDK), May.19/2018
  */
 @RunWith(SpringRunner.class)
@@ -58,10 +58,10 @@ public class PalindromeControllerTests {
     @Test
     public void givenPalindromeControllerWhenSettingAPalindromeTextReturnsTrue() throws Exception {
         mockMvc.perform(get("/api/v1/palindrome/check?t=A nut for a jar of tuna"))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType("application/json;charset=UTF-8"))
-            .andExpect(jsonPath("$").isBoolean())
-            .andExpect(jsonPath("$").value(true));
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json;charset=UTF-8"))
+                .andExpect(jsonPath("$").isBoolean())
+                .andExpect(jsonPath("$").value(true));
     }
 
     /**
@@ -72,9 +72,9 @@ public class PalindromeControllerTests {
     @Test
     public void givenPalindromeControllerWhenSettingANonPalindromeTextReturnsTrue() throws Exception {
         mockMvc.perform(get("/api/v1/palindrome/check?t=Car"))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType("application/json;charset=UTF-8"))
-            .andExpect(jsonPath("$").isBoolean())
-            .andExpect(jsonPath("$").value(false));
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json;charset=UTF-8"))
+                .andExpect(jsonPath("$").isBoolean())
+                .andExpect(jsonPath("$").value(false));
     }
 }
