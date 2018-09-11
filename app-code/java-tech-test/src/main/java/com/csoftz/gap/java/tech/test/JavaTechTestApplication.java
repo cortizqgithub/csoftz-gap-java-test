@@ -46,10 +46,9 @@ public class JavaTechTestApplication implements CommandLineRunner {
      * Execute the command line runner task.
      *
      * @param args Command line arguments.
-     * @throws Exception Captures any exception when executiong.
      */
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         String appVersion = APP_NAME + " " + APP_VERSION;
         System.out.println(appVersion);
         log.info(appVersion);

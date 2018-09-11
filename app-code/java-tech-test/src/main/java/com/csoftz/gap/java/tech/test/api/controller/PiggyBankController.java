@@ -59,7 +59,6 @@ public class PiggyBankController {
      * Configure service internal properties accordingly. In fact it loads all
      * configured schemas into a hashmap so it is always available.
      *
-     * @throws Exception
      * @PostConstruct means that this is called after the bean has been set-up.
      * Use this method to check that the bean has been set-up
      * correctly.

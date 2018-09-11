@@ -3,8 +3,8 @@
 /* Description:   Service implementation to handle Piggy Bank operations.     */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
 /* Date:          May.19/2018                                                 */
-/* Last Modified: May.20/2018                                                 */
-/* Version:       1.2                                                         */
+/* Last Modified: Sep.10/2018                                                 */
+/* Version:       1.3                                                         */
 /* Copyright (c), 2018 CSoftZ                                                 */
 /*----------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------
@@ -34,7 +34,7 @@ import static com.csoftz.gap.java.tech.test.common.consts.GlobalConsts.ERROR_MSG
  * Service implementation to handle Piggy Bank operations.
  *
  * @author Carlos Adolfo Ortiz Quirós (COQ)
- * @version 1.2, May.20/2018
+ * @version 1.3, Sep.10/2018
  * @since 1.8 (JDK), May.19/2018
  */
 @Service
@@ -85,7 +85,7 @@ public class PiggyBankServiceImpl implements PiggyBankService {
      * Adds a new coin to the Piggy Bank System. If the coindValue is not
      * a valid denomintation the returned status will offer a clue about it.
      *
-     * @param coinValue
+     * @param coinValue The coin to be inserted.
      * @return The Result of the operation as a PiggyBankResponse object.
      */
     @Override
@@ -99,18 +99,18 @@ public class PiggyBankServiceImpl implements PiggyBankService {
 
         if (!isValid) {
             piggyBankResponse = PiggyBankResponse.builder()
-                .error(ERROR_CODE_COIN_INVALID_DENOMINATION)
-                .msg(ERROR_MSG_COIN_INVALID_DENOMINATION)
-                .build();
+                    .error(ERROR_CODE_COIN_INVALID_DENOMINATION)
+                    .msg(ERROR_MSG_COIN_INVALID_DENOMINATION)
+                    .build();
         } else {
             Integer selValue = piggyBank.getCoinsStore().get(coinValue);
             selValue += 1;
             piggyBank.getCoinsStore().put(coinValue, selValue);
             piggyBank.setSize(piggyBank.getSize() + 1);
             piggyBankResponse = PiggyBankResponse.builder()
-                .error(CODE_OK)
-                .msg("")
-                .build();
+                    .error(CODE_OK)
+                    .msg("")
+                    .build();
         }
 
         return piggyBankResponse;
@@ -126,8 +126,8 @@ public class PiggyBankServiceImpl implements PiggyBankService {
         log.debug("Executing remove()");
         log.debug("As the specification dictates it is always forbidden. Maybe in the future this will be allowed.");
         return PiggyBankResponse.builder()
-            .error(ERROR_CODE_CANNOT_WITHDRAW_COIN)
-            .msg(ERROR_MSG_CANNOT_WITHDRAW_COIN)
-            .build();
+                .error(ERROR_CODE_CANNOT_WITHDRAW_COIN)
+                .msg(ERROR_MSG_CANNOT_WITHDRAW_COIN)
+                .build();
     }
 }
