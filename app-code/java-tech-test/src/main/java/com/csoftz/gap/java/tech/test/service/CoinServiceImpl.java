@@ -3,8 +3,8 @@
 /* Description:   Service implementation to handle Coin operations.           */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
 /* Date:          May.19/2018                                                 */
-/* Last Modified: May.20/2018                                                 */
-/* Version:       1.2                                                         */
+/* Last Modified: Sep.10/2018                                                 */
+/* Version:       1.3                                                         */
 /* Copyright (c), 2018 CSoftZ                                                 */
 /*----------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------
@@ -28,7 +28,7 @@ import static java.util.stream.Collectors.joining;
  * Service implementation to handle Coin operations.
  *
  * @author Carlos Adolfo Ortiz Quirós (COQ)
- * @version 1.2, May.20/2018
+ * @version 1.3, Sep.10/2018
  * @since 1.8 (JDK), May.19/2018
  */
 @Service
@@ -51,8 +51,8 @@ public class CoinServiceImpl implements CoinService {
         String[] values = s.split(",");
         coinsList = new ArrayList<>();
         Arrays.stream(values)
-            .map(String::trim)
-            .forEach(this::register);
+                .map(String::trim)
+                .forEach(this::register);
     }
 
     /**
@@ -136,7 +136,7 @@ public class CoinServiceImpl implements CoinService {
     public String retrieveRegistered() {
         log.debug("Executing retrieveRegistered()");
         String rslt = coinsList.stream()
-            .collect(joining(","));
+                .collect(joining(","));
         log.debug("Registered coin values=[{}]", rslt);
         return rslt;
     }
