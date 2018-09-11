@@ -3,8 +3,8 @@
 /* Description:   General constant definitions.                               */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
 /* Date:          May.19/2018                                                 */
-/* Last Modified: May.20/2018                                                 */
-/* Version:       1.2                                                         */
+/* Last Modified: Sep.10/2018                                                 */
+/* Version:       1.3                                                         */
 /* Copyright (c), 2018 CSoftZ                                                 */
 /*----------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------
@@ -17,7 +17,7 @@ package com.csoftz.gap.java.tech.test.common.consts;
  * General constant definitions.
  *
  * @author Carlos Adolfo Ortiz Quirós (COQ)
- * @version 1.2, May.20/2018
+ * @version 1.3, Sep.10/2018
  * @since 1.8 (JDK), May.19/2018
  */
 public class GlobalConsts {
@@ -48,4 +48,12 @@ public class GlobalConsts {
      */
     public static final String ERROR_MSG_COIN_INVALID_DENOMINATION = "Coin rejected. Valid coin denominations are: 50, 100, 200, 500 & 1000";
     public static final String ERROR_MSG_CANNOT_WITHDRAW_COIN = "No coin can be withdrawn from Piggy Bank. Not allowed.";
+
+    /**
+     * Adds a private constructor in order to be SonarLint Compliant as this class
+     * will never be instantiated as it is an utility class.
+     */
+    private GlobalConsts() {
+        throw new IllegalStateException("Utility class");
+    }
 }

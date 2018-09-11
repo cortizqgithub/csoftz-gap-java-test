@@ -3,8 +3,8 @@
 /* Description:   REST Api for Palindrome end-points.                         */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
 /* Date:          May.19/2018                                                 */
-/* Last Modified: May.20/2018                                                 */
-/* Version:       1.2                                                         */
+/* Last Modified: Sep.10/2018                                                 */
+/* Version:       1.3                                                         */
 /* Copyright (c), 2018 CSoftZ                                                 */
 /*----------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------
@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
  * REST Api for Palindrome end-points.
  *
  * @author Carlos Adolfo Ortiz Quirós (COQ)
- * @version 1.2, May.20/2018
+ * @version 1.3, Sep.10/2018
  * @since 1.8 (JDK), May.19/2018
  */
 @CrossOrigin
@@ -54,6 +54,8 @@ public class PalindromeController {
     @GetMapping("/check")
     public Boolean checkPalindromeFor(@RequestParam String t) {
         Boolean rslt = this.palindromeService.check(t);
+        String msg = String.format("t=[%s] is a palindrome=%b", t, rslt);
+        log.debug(msg);
         return rslt;
     }
 }
