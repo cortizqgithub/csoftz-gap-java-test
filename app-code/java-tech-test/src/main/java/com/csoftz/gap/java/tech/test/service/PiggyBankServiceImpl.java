@@ -93,7 +93,7 @@ public class PiggyBankServiceImpl implements PiggyBankService {
         log.debug("Executing insertCoin()");
         log.debug("Parameter coinValue=[{}]", coinValue);
 
-        PiggyBankResponse piggyBankResponse = null;
+        PiggyBankResponse piggyBankResponse;
         boolean isValid = coinService.validate(coinValue);
         log.debug("given coinValue is valid=[{}]", isValid);
 
