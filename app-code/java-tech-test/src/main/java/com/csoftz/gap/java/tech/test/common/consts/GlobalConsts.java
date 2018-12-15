@@ -3,8 +3,8 @@
 /* Description:   General constant definitions.                               */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
 /* Date:          May.19/2018                                                 */
-/* Last Modified: Sep.10/2018                                                 */
-/* Version:       1.3                                                         */
+/* Last Modified: Dec.14/2018                                                 */
+/* Version:       1.4                                                         */
 /* Copyright (c), 2018 CSoftZ                                                 */
 /*----------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------
@@ -17,7 +17,7 @@ package com.csoftz.gap.java.tech.test.common.consts;
  * General constant definitions.
  *
  * @author Carlos Adolfo Ortiz Quirós (COQ)
- * @version 1.3, Sep.10/2018
+ * @version 1.4, Dec.14/2018
  * @since 1.8 (JDK), May.19/2018
  */
 public class GlobalConsts {
@@ -25,7 +25,7 @@ public class GlobalConsts {
      * General
      */
     public static final String APP_NAME = "Java Tech Test for GAP.";
-    public static final String APP_VERSION = "1.0.0-RELEASE. May.20/2018.";
+    public static final String APP_VERSION = "1.0.2-RELEASE. Dec.14/2018.";
 
     /*
      * Coins
