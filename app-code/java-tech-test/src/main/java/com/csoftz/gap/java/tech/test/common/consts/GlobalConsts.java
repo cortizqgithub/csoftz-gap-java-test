@@ -54,6 +54,5 @@ public class GlobalConsts {
      * will never be instantiated as it is an utility class.
      */
     private GlobalConsts() {
-        throw new IllegalStateException("Utility class");
     }
 }
